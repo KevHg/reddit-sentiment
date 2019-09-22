@@ -21,7 +21,7 @@ I like to browse Reddit to read up the general opinion on a certain subject, e.g
 ## Workflow
 * Web scraping
     * Post title and list of comments  - **Done!**
-    * Upvote count - ***In progress***
+    * Upvote count - **Done!**
     * Query arguments instead of hardcoded URL
 * Sentiment score
     * Look into Vader from NLTK
