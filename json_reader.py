@@ -12,14 +12,16 @@ from collections import namedtuple
 
 
 
-path = os.path.join('reddit_scraper', 'reddit.jl')
+path = os.path.join('reddit_scraper', 'test.jl')
 
 with open(path) as f:
     for line in f:
         post = json.loads(line)
         print(post['title'])
-        print(len(post['comments']))
-        print(len(post['upvotes']))
+        c = post['comments']
+        u = post['upvotes']
+        for i in range(len(u)):
+            print(c[i], u[i])
 
 
 

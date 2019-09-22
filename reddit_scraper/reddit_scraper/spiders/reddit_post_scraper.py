@@ -28,7 +28,8 @@ class RedditPostScraper(CrawlSpider):
             'title': response.css('a[data-event-action=title]::text').get(),
             # 'comments': response.css('div[class=md] p::text').getall(),
 
-            'comments': response.css('form.usertext.warn-on-unload div.usertext-body.may-blank-within.md-container div.md p::text').getall(),
+            'comments': response.css('div.commentarea div.entry.unvoted \
+            div.usertext-body.may-blank-within.md-container div.md p::text').getall(),
 
             'upvotes': response.css('span.score.unvoted::text').getall()
             # 'upvotes': response.xpath("//*[contains(text(), 'points')]").getall()
