@@ -14,6 +14,8 @@ BOT_NAME = 'reddit_scraper'
 SPIDER_MODULES = ['reddit_scraper.spiders']
 NEWSPIDER_MODULE = 'reddit_scraper.spiders'
 
+# Turn off logs
+LOG_ENABLED = False
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'reddit_scraper (+http://www.yourdomain.com)'
