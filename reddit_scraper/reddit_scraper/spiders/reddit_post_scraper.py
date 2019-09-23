@@ -4,18 +4,18 @@ from scrapy.linkextractors import LinkExtractor
 from ..items import RedditPost
 
 
+# In terminal, run crawler with [scrapy crawl reddit-posts -a domain="https://old.reddit.com/r/MouseReview"]
 class RedditPostScraper(CrawlSpider):
     name = 'reddit-posts'
 
     def __init__(self, domain='', *args, **kwargs):
-        super(CrawlSpider, self).__init__(*args, **kwargs)
         self.allowed_domains = ['old.reddit.com']
         self.start_urls = [domain]
-        # start_urls = ['https://www.google.com/search?as_sitesearch=reddit.com/r/MouseReview&q=g305']
+        self.rules = (
+            Rule(LinkExtractor(allow=('/comments/',)), callback='parse_item'),
+        )
 
-    rules = (
-        Rule(LinkExtractor(allow=('/comments/',)), callback='parse_item'),
-    )
+        super(RedditPostScraper, self).__init__(*args, **kwargs)
 
     def parse_item(self, response):
         yield {
@@ -28,5 +28,3 @@ class RedditPostScraper(CrawlSpider):
             'upvotes': response.css('span.score.unvoted::text').getall()
             # 'upvotes': response.xpath("//*[contains(text(), 'points')]").getall()
         }
-
-
