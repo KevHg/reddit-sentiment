@@ -4,26 +4,20 @@ from scrapy.linkextractors import LinkExtractor
 from ..items import RedditPost
 
 
+# In terminal, run crawler with [scrapy crawl reddit-posts -a domain="https://old.reddit.com/r/MouseReview"]
 class RedditPostScraper(CrawlSpider):
     name = 'reddit-posts'
-    allowed_domains = ['old.reddit.com']
 
-    start_urls = ['https://old.reddit.com/r/MouseReview/']
-    # start_urls = ['https://www.google.com/search?as_sitesearch=reddit.com/r/MouseReview&q=g305']
+    def __init__(self, domain='', *args, **kwargs):
+        self.allowed_domains = ['old.reddit.com']
+        self.start_urls = [domain]
+        self.rules = (
+            Rule(LinkExtractor(allow=('/comments/',)), callback='parse_item'),
+        )
 
-    rules = (
-        Rule(LinkExtractor(allow=('/comments/',)), callback='parse_item'),
-    )
+        super(RedditPostScraper, self).__init__(*args, **kwargs)
 
     def parse_item(self, response):
-        # self.logger.info(f'Crawling into {response.url}')
-        # item = RedditPost()
-        # item.title = response.css('h1::text').get()
-        # item.comments = response.css('div[data-test-id=comment] div p::text').getall()
-        # item.upvotes = response.xpath("//*[contains(text(), 'points')]").getall()
-        #
-        # return item
-
         yield {
             'title': response.css('a[data-event-action=title]::text').get(),
             # 'comments': response.css('div[class=md] p::text').getall(),
@@ -34,5 +28,3 @@ class RedditPostScraper(CrawlSpider):
             'upvotes': response.css('span.score.unvoted::text').getall()
             # 'upvotes': response.xpath("//*[contains(text(), 'points')]").getall()
         }
-
-
