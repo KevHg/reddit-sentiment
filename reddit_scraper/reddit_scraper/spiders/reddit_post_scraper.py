@@ -1,11 +1,9 @@
-import scrapy
 from scrapy.spiders import CrawlSpider, Rule
 from scrapy.linkextractors import LinkExtractor
-from ..items import RedditPost
 
 
 # In terminal, run crawler with [scrapy crawl reddit-posts -a domain="https://old.reddit.com/r/MouseReview"]
-class RedditPostScraper(CrawlSpider):
+class RedditPostCrawler(CrawlSpider):
     name = 'reddit-posts'
 
     def __init__(self, domain='', *args, **kwargs):
@@ -15,7 +13,7 @@ class RedditPostScraper(CrawlSpider):
             Rule(LinkExtractor(allow=('/comments/',)), callback='parse_item'),
         )
 
-        super(RedditPostScraper, self).__init__(*args, **kwargs)
+        super(RedditPostCrawler, self).__init__(*args, **kwargs)
 
     def parse_item(self, response):
         yield {
