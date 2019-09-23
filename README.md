@@ -23,7 +23,7 @@ I like to browse Reddit to read up the general opinion on a certain subject, e.g
     * Post title and list of comments  - **Done!**
     * Upvote count - **Done!**
     * Query arguments instead of hardcoded URL - **Done!**
-    * Execute spider from python script - ***In progress***
+    * Execute spider from python script - **In progress**
 * Sentiment score
     * Look into Vader from NLTK
     * Test out sentiment score results
