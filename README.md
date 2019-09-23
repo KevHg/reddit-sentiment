@@ -25,11 +25,11 @@ I like to browse Reddit to read up the general opinion on a certain subject, e.g
     * Query arguments instead of hardcoded URL - **Done!**
     * Execute spider from python script - **Done!**
 * Sentiment score
-    * Look into Vader from NLTK - ***In progress***
-    * Test out sentiment score results
-    * Apply upvote multiplier, potentially non-linear
+    * Look into Vader from NLTK - **Done!**
+    * Test out sentiment score results **Done!**
+    * Apply upvote multiplier, potentially non-linear ***In progress***
 * Integration
-    * Script scrapy crawl with sentiment score calculation
+    * Script scrapy crawl with sentiment score calculation **Done!**
     * Get top occurring keywords
 * Bonus
     * UI instead of terminal
