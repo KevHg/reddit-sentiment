@@ -2,8 +2,9 @@ from scrapy.spiders import CrawlSpider, Rule
 from scrapy.linkextractors import LinkExtractor
 
 
-# In terminal, run crawler with [scrapy crawl reddit-posts -a domain="https://old.reddit.com/r/MouseReview"]
 class RedditPostCrawler(CrawlSpider):
+    """Crawler on Reddit posts given an 'old.reddit.com' domain, returning a title, list of comments,
+    and list of upvotes"""
     name = 'reddit-posts'
 
     def __init__(self, domain='', *args, **kwargs):
