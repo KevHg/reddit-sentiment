@@ -50,6 +50,7 @@ def get_sentiment_score(sentence):
     return score['compound']
 
 
+# Return new DataFrame with sentiment score
 def calculate_sentiment_score(df):
     def sentiment_score(row):
         score = get_sentiment_score(row['comment'])
